@@ -42,7 +42,7 @@
           v-model="dateRange"
           size="small"
           style="width: 240px"
-          value-format="yyyy-MM-dd"
+          value-format="yyyy-MM-dd hh:mm:ss"
           type="daterange"
           range-separator="-"
           start-placeholder="开始日期"

@@ -587,10 +587,10 @@ const dateTimeFormat = {
   week: 'yyyy 第 WW 周',
   month: 'yyyy-MM',
   year: 'yyyy',
-  datetime: 'yyyy-MM-dd HH:mm:ss',
+  datetime: 'yyyy-MM-dd hh:mm:ss',
   daterange: 'yyyy-MM-dd',
   monthrange: 'yyyy-MM',
-  datetimerange: 'yyyy-MM-dd HH:mm:ss'
+  datetimerange: 'yyyy-MM-dd hh:mm:ss'
 }
 
 export default {

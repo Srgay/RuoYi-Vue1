@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.healthrecords.mapper.WaizhenMapper">
+    
+    <resultMap type="Waizhen" id="WaizhenResult">
+        <result property="id"    column="id"    />
+        <result property="num"    column="num"    />
+        <result property="date"    column="date"    />
+        <result property="name"    column="name"    />
+        <result property="age"    column="age"    />
+        <result property="race"    column="race"    />
+        <result property="duibie"    column="duibie"    />
+        <result property="wzReason"    column="wz_reason"    />
+    </resultMap>
+
+    <sql id="selectWaizhenVo">
+        select id, num, date, name, age, race, duibie, wz_reason from waizhen
+    </sql>
+
+    <select id="selectWaizhenList" parameterType="Waizhen" resultMap="WaizhenResult">
+        <include refid="selectWaizhenVo"/>
+        <where>  
+            <if test="num != null "> and num = #{num}</if>
+            <if test="date != null "> and date = #{date}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="age != null "> and age = #{age}</if>
+            <if test="race != null  and race != ''"> and race = #{race}</if>
+            <if test="duibie != null  and duibie != ''"> and duibie = #{duibie}</if>
+            <if test="wzReason != null  and wzReason != ''"> and wz_reason = #{wzReason}</if>
+        </where>
+    </select>
+    
+    <select id="selectWaizhenById" parameterType="Long" resultMap="WaizhenResult">
+        <include refid="selectWaizhenVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWaizhen" parameterType="Waizhen" useGeneratedKeys="true" keyProperty="id">
+        insert into waizhen
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="num != null">num,</if>
+            <if test="date != null">date,</if>
+            <if test="name != null">name,</if>
+            <if test="age != null">age,</if>
+            <if test="race != null">race,</if>
+            <if test="duibie != null">duibie,</if>
+            <if test="wzReason != null">wz_reason,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="num != null">#{num},</if>
+            <if test="date != null">#{date},</if>
+            <if test="name != null">#{name},</if>
+            <if test="age != null">#{age},</if>
+            <if test="race != null">#{race},</if>
+            <if test="duibie != null">#{duibie},</if>
+            <if test="wzReason != null">#{wzReason},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWaizhen" parameterType="Waizhen">
+        update waizhen
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="num != null">num = #{num},</if>
+            <if test="date != null">date = #{date},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="race != null">race = #{race},</if>
+            <if test="duibie != null">duibie = #{duibie},</if>
+            <if test="wzReason != null">wz_reason = #{wzReason},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWaizhenById" parameterType="Long">
+        delete from waizhen where id = #{id}
+    </delete>
+
+    <delete id="deleteWaizhenByIds" parameterType="String">
+        delete from waizhen where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

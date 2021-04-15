@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.healthrecords.mapper.HealthInfoMapper">
+
+    <resultMap type="HealthInfo" id="HealthInfoResult">
+        <result property="fileNum"    column="file_num"    />
+        <result property="name"    column="name"    />
+        <result property="age"    column="age"    />
+        <result property="marriage"    column="marriage"    />
+        <result property="education"    column="education"    />
+        <result property="startTime"    column="start_time"    />
+        <result property="endingTime"    column="ending_time"    />
+        <result property="enterTime"    column="enter_time"    />
+        <result property="formerResidence"    column="former_residence"    />
+        <result property="race"    column="race"    />
+        <result property="firstReason"    column="first_reason"    />
+        <result property="drugType"    column="drug_type"    />
+        <result property="syntheticDrugs"    column="synthetic_drugs"    />
+        <result property="drugFrom"    column="drug_from"    />
+        <result property="usageMethod"    column="usage_method"    />
+        <result property="gyzhusheqi"    column="gyzhusheqi"    />
+        <result property="firstDrugTime"    column="first_drug_time"    />
+        <result property="addictionTime"    column="addiction_time"    />
+        <result property="lastDrugTime"    column="last_drug_time"    />
+        <result property="dailyUse"    column="daily_use"    />
+        <result property="subMind"    column="sub_mind"    />
+        <result property="mindChange"    column="mind_change"    />
+        <result property="symptom"    column="symptom"    />
+        <result property="symptomTimes"    column="symptom_times"    />
+        <result property="whereDet"    column="where_det"    />
+        <result property="relapseTime"    column="relapse_time"    />
+        <result property="relapseWay"    column="relapse_way"    />
+        <result property="relapseReason"    column="relapse_reason"    />
+        <result property="medicalHistory"    column="medical_history"    />
+        <result property="treatment"    column="treatment"    />
+        <result property="cureOrnot"    column="cure_ornot"    />
+        <result property="swallowOrnot"    column="swallow_ornot"    />
+        <result property="swallowType"    column="swallow_type"    />
+        <result property="injureOrnot"    column="injure_ornot"    />
+        <result property="scarOrnot"    column="scar_ornot"    />
+        <result property="operationOrnot"    column="operation_ornot"    />
+        <result property="mentalillnessOrnot"    column="mentalillness_ornot"    />
+        <result property="diseaseType"    column="disease_type"    />
+        <result property="tattooOrnot"    column="tattoo_ornot"    />
+        <result property="tattooPosition"    column="tattoo_position"    />
+        <result property="supplement"    column="supplement"    />
+        <result property="foster"    column="foster"    />
+        <result property="grade"    column="grade"    />
+        <result property="character"    column="character1"    />
+        <result property="hobby"    column="hobby"    />
+        <result property="remarks"    column="remarks"    />
+    </resultMap>
+
+    <sql id="selectHealthInfoVo">
+        select file_num, name, age, marriage, education, start_time, ending_time, enter_time, former_residence, race, first_reason, drug_type, synthetic_drugs, drug_from, usage_method, gyzhusheqi, first_drug_time, addiction_time, last_drug_time, daily_use, sub_mind, mind_change, symptom, symptom_times, where_det, relapse_time, relapse_way, relapse_reason, medical_history, treatment, cure_ornot, swallow_ornot, swallow_type, injure_ornot, scar_ornot, operation_ornot, mentalillness_ornot, disease_type, tattoo_ornot, tattoo_position, supplement, foster, grade, character1, hobby, remarks from health_info
+    </sql>
+
+    <select id="selectHealthInfoList" parameterType="HealthInfo" resultMap="HealthInfoResult">
+        <include refid="selectHealthInfoVo"/>
+        <where>
+            <if test="fileNum != null "> and file_num = #{fileNum}</if>
+            <if test="name != null  and name != ''"> and name = #{name}</if>
+            <if test="age != null "> and age = #{age}</if>
+            <if test="marriage != null  and marriage != ''"> and marriage = #{marriage}</if>
+            <if test="education != null  and education != ''"> and education = #{education}</if>
+            <if test="startTime != null "> and start_time = #{startTime}</if>
+            <if test="endingTime != null "> and ending_time = #{endingTime}</if>
+            <if test="enterTime != null "> and enter_time = #{enterTime}</if>
+            <if test="formerResidence != null  and formerResidence != ''"> and former_residence = #{formerResidence}</if>
+            <if test="race != null  and race != ''"> and race = #{race}</if>
+            <if test="firstReason != null  and firstReason != ''"> and first_reason = #{firstReason}</if>
+            <if test="drugType != null  and drugType != ''"> and drug_type = #{drugType}</if>
+            <if test="syntheticDrugs != null  and syntheticDrugs != ''"> and synthetic_drugs = #{syntheticDrugs}</if>
+            <if test="drugFrom != null  and drugFrom != ''"> and drug_from = #{drugFrom}</if>
+            <if test="usageMethod != null  and usageMethod != ''"> and usage_method = #{usageMethod}</if>
+            <if test="gyzhusheqi != null  and gyzhusheqi != ''"> and gyzhusheqi = #{gyzhusheqi}</if>
+            <if test="firstDrugTime != null "> and first_drug_time = #{firstDrugTime}</if>
+            <if test="addictionTime != null "> and addiction_time = #{addictionTime}</if>
+            <if test="lastDrugTime != null "> and last_drug_time = #{lastDrugTime}</if>
+            <if test="dailyUse != null  and dailyUse != ''"> and daily_use = #{dailyUse}</if>
+            <if test="subMind != null  and subMind != ''"> and sub_mind = #{subMind}</if>
+            <if test="mindChange != null  and mindChange != ''"> and mind_change = #{mindChange}</if>
+            <if test="symptom != null  and symptom != ''"> and symptom = #{symptom}</if>
+            <if test="symptomTimes != null  and symptomTimes != ''"> and symptom_times = #{symptomTimes}</if>
+            <if test="whereDet != null  and whereDet != ''"> and where_det = #{whereDet}</if>
+            <if test="relapseTime != null "> and relapse_time = #{relapseTime}</if>
+            <if test="relapseWay != null  and relapseWay != ''"> and relapse_way = #{relapseWay}</if>
+            <if test="relapseReason != null  and relapseReason != ''"> and relapse_reason = #{relapseReason}</if>
+            <if test="medicalHistory != null  and medicalHistory != ''"> and medical_history = #{medicalHistory}</if>
+            <if test="treatment != null  and treatment != ''"> and treatment = #{treatment}</if>
+            <if test="cureOrnot != null  and cureOrnot != ''"> and cure_ornot = #{cureOrnot}</if>
+            <if test="swallowOrnot != null  and swallowOrnot != ''"> and swallow_ornot = #{swallowOrnot}</if>
+            <if test="swallowType != null  and swallowType != ''"> and swallow_type = #{swallowType}</if>
+            <if test="injureOrnot != null  and injureOrnot != ''"> and injure_ornot = #{injureOrnot}</if>
+            <if test="scarOrnot != null  and scarOrnot != ''"> and scar_ornot = #{scarOrnot}</if>
+            <if test="operationOrnot != null  and operationOrnot != ''"> and operation_ornot = #{operationOrnot}</if>
+            <if test="mentalillnessOrnot != null  and mentalillnessOrnot != ''"> and mentalillness_ornot = #{mentalillnessOrnot}</if>
+            <if test="diseaseType != null  and diseaseType != ''"> and disease_type = #{diseaseType}</if>
+            <if test="tattooOrnot != null  and tattooOrnot != ''"> and tattoo_ornot = #{tattooOrnot}</if>
+            <if test="tattooPosition != null  and tattooPosition != ''"> and tattoo_position = #{tattooPosition}</if>
+            <if test="supplement != null  and supplement != ''"> and supplement = #{supplement}</if>
+            <if test="foster != null  and foster != ''"> and foster = #{foster}</if>
+            <if test="grade != null  and grade != ''"> and grade = #{grade}</if>
+            <if test="character != null  and character != ''"> and character1 = #{character}</if>
+            <if test="hobby != null  and hobby != ''"> and hobby = #{hobby}</if>
+            <if test="remarks != null  and remarks != ''"> and remarks = #{remarks}</if>
+        </where>
+    </select>
+
+    <select id="selectHealthInfoById" parameterType="Long" resultMap="HealthInfoResult">
+        <include refid="selectHealthInfoVo"/>
+        where file_num = #{fileNum}
+    </select>
+
+    <insert id="insertHealthInfo" parameterType="HealthInfo">
+        insert into health_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fileNum != null">file_num,</if>
+            <if test="name != null">name,</if>
+            <if test="age != null">age,</if>
+            <if test="marriage != null">marriage,</if>
+            <if test="education != null">education,</if>
+            <if test="startTime != null">start_time,</if>
+            <if test="endingTime != null">ending_time,</if>
+            <if test="enterTime != null">enter_time,</if>
+            <if test="formerResidence != null">former_residence,</if>
+            <if test="race != null">race,</if>
+            <if test="firstReason != null">first_reason,</if>
+            <if test="drugType != null">drug_type,</if>
+            <if test="syntheticDrugs != null">synthetic_drugs,</if>
+            <if test="drugFrom != null">drug_from,</if>
+            <if test="usageMethod != null">usage_method,</if>
+            <if test="gyzhusheqi != null">gyzhusheqi,</if>
+            <if test="firstDrugTime != null">first_drug_time,</if>
+            <if test="addictionTime != null">addiction_time,</if>
+            <if test="lastDrugTime != null">last_drug_time,</if>
+            <if test="dailyUse != null">daily_use,</if>
+            <if test="subMind != null">sub_mind,</if>
+            <if test="mindChange != null">mind_change,</if>
+            <if test="symptom != null">symptom,</if>
+            <if test="symptomTimes != null">symptom_times,</if>
+            <if test="whereDet != null">where_det,</if>
+            <if test="relapseTime != null">relapse_time,</if>
+            <if test="relapseWay != null">relapse_way,</if>
+            <if test="relapseReason != null">relapse_reason,</if>
+            <if test="medicalHistory != null">medical_history,</if>
+            <if test="treatment != null">treatment,</if>
+            <if test="cureOrnot != null">cure_ornot,</if>
+            <if test="swallowOrnot != null">swallow_ornot,</if>
+            <if test="swallowType != null">swallow_type,</if>
+            <if test="injureOrnot != null">injure_ornot,</if>
+            <if test="scarOrnot != null">scar_ornot,</if>
+            <if test="operationOrnot != null">operation_ornot,</if>
+            <if test="mentalillnessOrnot != null">mentalillness_ornot,</if>
+            <if test="diseaseType != null">disease_type,</if>
+            <if test="tattooOrnot != null">tattoo_ornot,</if>
+            <if test="tattooPosition != null">tattoo_position,</if>
+            <if test="supplement != null">supplement,</if>
+            <if test="foster != null">foster,</if>
+            <if test="grade != null">grade,</if>
+            <if test="character != null">character1,</if>
+            <if test="hobby != null">hobby,</if>
+            <if test="remarks != null">remarks,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fileNum != null">#{fileNum},</if>
+            <if test="name != null">#{name},</if>
+            <if test="age != null">#{age},</if>
+            <if test="marriage != null">#{marriage},</if>
+            <if test="education != null">#{education},</if>
+            <if test="startTime != null">#{startTime},</if>
+            <if test="endingTime != null">#{endingTime},</if>
+            <if test="enterTime != null">#{enterTime},</if>
+            <if test="formerResidence != null">#{formerResidence},</if>
+            <if test="race != null">#{race},</if>
+            <if test="firstReason != null">#{firstReason},</if>
+            <if test="drugType != null">#{drugType},</if>
+            <if test="syntheticDrugs != null">#{syntheticDrugs},</if>
+            <if test="drugFrom != null">#{drugFrom},</if>
+            <if test="usageMethod != null">#{usageMethod},</if>
+            <if test="gyzhusheqi != null">#{gyzhusheqi},</if>
+            <if test="firstDrugTime != null">#{firstDrugTime},</if>
+            <if test="addictionTime != null">#{addictionTime},</if>
+            <if test="lastDrugTime != null">#{lastDrugTime},</if>
+            <if test="dailyUse != null">#{dailyUse},</if>
+            <if test="subMind != null">#{subMind},</if>
+            <if test="mindChange != null">#{mindChange},</if>
+            <if test="symptom != null">#{symptom},</if>
+            <if test="symptomTimes != null">#{symptomTimes},</if>
+            <if test="whereDet != null">#{whereDet},</if>
+            <if test="relapseTime != null">#{relapseTime},</if>
+            <if test="relapseWay != null">#{relapseWay},</if>
+            <if test="relapseReason != null">#{relapseReason},</if>
+            <if test="medicalHistory != null">#{medicalHistory},</if>
+            <if test="treatment != null">#{treatment},</if>
+            <if test="cureOrnot != null">#{cureOrnot},</if>
+            <if test="swallowOrnot != null">#{swallowOrnot},</if>
+            <if test="swallowType != null">#{swallowType},</if>
+            <if test="injureOrnot != null">#{injureOrnot},</if>
+            <if test="scarOrnot != null">#{scarOrnot},</if>
+            <if test="operationOrnot != null">#{operationOrnot},</if>
+            <if test="mentalillnessOrnot != null">#{mentalillnessOrnot},</if>
+            <if test="diseaseType != null">#{diseaseType},</if>
+            <if test="tattooOrnot != null">#{tattooOrnot},</if>
+            <if test="tattooPosition != null">#{tattooPosition},</if>
+            <if test="supplement != null">#{supplement},</if>
+            <if test="foster != null">#{foster},</if>
+            <if test="grade != null">#{grade},</if>
+            <if test="character != null">#{character},</if>
+            <if test="hobby != null">#{hobby},</if>
+            <if test="remarks != null">#{remarks},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHealthInfo" parameterType="HealthInfo">
+        update health_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="marriage != null">marriage = #{marriage},</if>
+            <if test="education != null">education = #{education},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="endingTime != null">ending_time = #{endingTime},</if>
+            <if test="enterTime != null">enter_time = #{enterTime},</if>
+            <if test="formerResidence != null">former_residence = #{formerResidence},</if>
+            <if test="race != null">race = #{race},</if>
+            <if test="firstReason != null">first_reason = #{firstReason},</if>
+            <if test="drugType != null">drug_type = #{drugType},</if>
+            <if test="syntheticDrugs != null">synthetic_drugs = #{syntheticDrugs},</if>
+            <if test="drugFrom != null">drug_from = #{drugFrom},</if>
+            <if test="usageMethod != null">usage_method = #{usageMethod},</if>
+            <if test="gyzhusheqi != null">gyzhusheqi = #{gyzhusheqi},</if>
+            <if test="firstDrugTime != null">first_drug_time = #{firstDrugTime},</if>
+            <if test="addictionTime != null">addiction_time = #{addictionTime},</if>
+            <if test="lastDrugTime != null">last_drug_time = #{lastDrugTime},</if>
+            <if test="dailyUse != null">daily_use = #{dailyUse},</if>
+            <if test="subMind != null">sub_mind = #{subMind},</if>
+            <if test="mindChange != null">mind_change = #{mindChange},</if>
+            <if test="symptom != null">symptom = #{symptom},</if>
+            <if test="symptomTimes != null">symptom_times = #{symptomTimes},</if>
+            <if test="whereDet != null">where_det = #{whereDet},</if>
+            <if test="relapseTime != null">relapse_time = #{relapseTime},</if>
+            <if test="relapseWay != null">relapse_way = #{relapseWay},</if>
+            <if test="relapseReason != null">relapse_reason = #{relapseReason},</if>
+            <if test="medicalHistory != null">medical_history = #{medicalHistory},</if>
+            <if test="treatment != null">treatment = #{treatment},</if>
+            <if test="cureOrnot != null">cure_ornot = #{cureOrnot},</if>
+            <if test="swallowOrnot != null">swallow_ornot = #{swallowOrnot},</if>
+            <if test="swallowType != null">swallow_type = #{swallowType},</if>
+            <if test="injureOrnot != null">injure_ornot = #{injureOrnot},</if>
+            <if test="scarOrnot != null">scar_ornot = #{scarOrnot},</if>
+            <if test="operationOrnot != null">operation_ornot = #{operationOrnot},</if>
+            <if test="mentalillnessOrnot != null">mentalillness_ornot = #{mentalillnessOrnot},</if>
+            <if test="diseaseType != null">disease_type = #{diseaseType},</if>
+            <if test="tattooOrnot != null">tattoo_ornot = #{tattooOrnot},</if>
+            <if test="tattooPosition != null">tattoo_position = #{tattooPosition},</if>
+            <if test="supplement != null">supplement = #{supplement},</if>
+            <if test="foster != null">foster = #{foster},</if>
+            <if test="grade != null">grade = #{grade},</if>
+            <if test="character != null">character1 = #{character},</if>
+            <if test="hobby != null">hobby = #{hobby},</if>
+            <if test="remarks != null">remarks = #{remarks},</if>
+        </trim>
+        where file_num = #{fileNum}
+    </update>
+
+    <delete id="deleteHealthInfoById" parameterType="Long">
+        delete from health_info where file_num = #{fileNum}
+    </delete>
+
+    <delete id="deleteHealthInfoByIds" parameterType="String">
+        delete from health_info where file_num in
+        <foreach item="fileNum" collection="array" open="(" separator="," close=")">
+            #{fileNum}
+        </foreach>
+    </delete>
+
+</mapper>

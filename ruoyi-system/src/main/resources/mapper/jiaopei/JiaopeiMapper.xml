@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.jiaopei.mapper.JiaopeiMapper">
+
+    <resultMap type="Jiaopei" id="JiaopeiResult">
+        <result property="id"    column="id"    />
+        <result property="date"    column="date"    />
+        <!--<result property="time"    column="time"    />-->
+        <result property="part"    column="part"    />
+        <result property="participants"    column="participants"    />
+        <result property="organizer"    column="organizer"    />
+        <result property="trainingTopics"    column="training_topics"    />
+        <result property="record"    column="record"    />
+    </resultMap>
+
+    <sql id="selectJiaopeiVo">
+        select id, date   , part, participants, organizer, training_topics, record from jiaopei
+    </sql>
+
+    <select id="selectJiaopeiList" parameterType="Jiaopei" resultMap="JiaopeiResult">
+        <include refid="selectJiaopeiVo"/>
+        <where>
+            <if test="date != null "> and date = #{date}</if>
+             <!--<if test="time != null "> and time = #{time}</if>-->
+            <if test="part != null  and part != ''"> and part = #{part}</if>
+            <if test="participants != null  and participants != ''"> and participants = #{participants}</if>
+            <if test="organizer != null  and organizer != ''"> and organizer = #{organizer}</if>
+            <if test="trainingTopics != null  and trainingTopics != ''"> and training_topics = #{trainingTopics}</if>
+            <if test="record != null  and record != ''"> and record = #{record}</if>
+        </where>
+    </select>
+
+    <select id="selectJiaopeiById" parameterType="Long" resultMap="JiaopeiResult">
+        <include refid="selectJiaopeiVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertJiaopei" parameterType="Jiaopei" useGeneratedKeys="true" keyProperty="id">
+        insert into jiaopei
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="date != null">date,</if>
+            <!--<if test="time != null">time,</if>-->
+            <if test="part != null">part,</if>
+            <if test="participants != null">participants,</if>
+            <if test="organizer != null">organizer,</if>
+            <if test="trainingTopics != null">training_topics,</if>
+            <if test="record != null">record,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="date != null">#{date},</if>
+            <!--<if test="time != null">#{time},</if>-->
+            <if test="part != null">#{part},</if>
+            <if test="participants != null">#{participants},</if>
+            <if test="organizer != null">#{organizer},</if>
+            <if test="trainingTopics != null">#{trainingTopics},</if>
+            <if test="record != null">#{record},</if>
+         </trim>
+    </insert>
+
+    <update id="updateJiaopei" parameterType="Jiaopei">
+        update jiaopei
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="date != null">date = #{date},</if>
+            <!--<if test="time != null">time = #{time},</if>-->
+            <if test="part != null">part = #{part},</if>
+            <if test="participants != null">participants = #{participants},</if>
+            <if test="organizer != null">organizer = #{organizer},</if>
+            <if test="trainingTopics != null">training_topics = #{trainingTopics},</if>
+            <if test="record != null">record = #{record},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteJiaopeiById" parameterType="Long">
+        delete from jiaopei where id = #{id}
+    </delete>
+
+    <delete id="deleteJiaopeiByIds" parameterType="String">
+        delete from jiaopei where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

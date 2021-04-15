@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.healthrecords.mapper.JiuzhenMapper">
+
+    <resultMap type="Jiuzhen" id="JiuzhenResult">
+        <result property="id"    column="id"    />
+        <result property="date"    column="date"    />
+        <!--<result property="time"    column="time"    />-->
+        <result property="name"    column="name"    />
+        <result property="duibie"    column="duibie"    />
+        <result property="diagnosisResults"    column="diagnosis_results"    />
+        <result property="prescription"    column="prescription"    />
+        <result property="remarks"    column="remarks"    />
+        <result property="attendingDoctor"    column="attending_doctor"    />
+    </resultMap>
+
+    <sql id="selectJiuzhenVo">
+        select id, date  , name, duibie, diagnosis_results, prescription, remarks, attending_doctor from jiuzhen
+    </sql>
+
+    <select id="selectJiuzhenList" parameterType="Jiuzhen" resultMap="JiuzhenResult">
+        <include refid="selectJiuzhenVo"/>
+        <where>
+            <if test="date != null "> and date = #{date}</if>
+             <!--<if test="time != null "> and time = #{time}</if>-->
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="duibie != null  and duibie != ''"> and duibie = #{duibie}</if>
+            <if test="diagnosisResults != null  and diagnosisResults != ''"> and diagnosis_results = #{diagnosisResults}</if>
+            <if test="prescription != null  and prescription != ''"> and prescription = #{prescription}</if>
+            <if test="remarks != null  and remarks != ''"> and remarks = #{remarks}</if>
+            <if test="attendingDoctor != null  and attendingDoctor != ''"> and attending_doctor = #{attendingDoctor}</if>
+        </where>
+    </select>
+
+    <select id="selectJiuzhenById" parameterType="Long" resultMap="JiuzhenResult">
+        <include refid="selectJiuzhenVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertJiuzhen" parameterType="Jiuzhen" useGeneratedKeys="true" keyProperty="id">
+        insert into jiuzhen
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="date != null">date,</if>
+            <!--<if test="time != null">time,</if>-->
+            <if test="name != null">name,</if>
+            <if test="duibie != null">duibie,</if>
+            <if test="diagnosisResults != null">diagnosis_results,</if>
+            <if test="prescription != null">prescription,</if>
+            <if test="remarks != null">remarks,</if>
+            <if test="attendingDoctor != null">attending_doctor,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="date != null">#{date},</if>
+            <!--<if test="time != null">#{time},</if>-->
+            <if test="name != null">#{name},</if>
+            <if test="duibie != null">#{duibie},</if>
+            <if test="diagnosisResults != null">#{diagnosisResults},</if>
+            <if test="prescription != null">#{prescription},</if>
+            <if test="remarks != null">#{remarks},</if>
+            <if test="attendingDoctor != null">#{attendingDoctor},</if>
+         </trim>
+    </insert>
+
+    <update id="updateJiuzhen" parameterType="Jiuzhen">
+        update jiuzhen
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="date != null">date = #{date},</if>
+            <!--<if test="time != null">time = #{time},</if>-->
+            <if test="name != null">name = #{name},</if>
+            <if test="duibie != null">duibie = #{duibie},</if>
+            <if test="diagnosisResults != null">diagnosis_results = #{diagnosisResults},</if>
+            <if test="prescription != null">prescription = #{prescription},</if>
+            <if test="remarks != null">remarks = #{remarks},</if>
+            <if test="attendingDoctor != null">attending_doctor = #{attendingDoctor},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteJiuzhenById" parameterType="Long">
+        delete from jiuzhen where id = #{id}
+    </delete>
+
+    <delete id="deleteJiuzhenByIds" parameterType="String">
+        delete from jiuzhen where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

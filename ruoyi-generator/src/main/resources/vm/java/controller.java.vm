@@ -25,7 +25,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
  * ${functionName}Controller
- * 
+ *
  * @author ${author}
  * @date ${datetime}
  */
@@ -67,6 +67,28 @@ public class ${ClassName}Controller extends BaseController
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
         ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}.class);
         return util.exportExcel(list, "${businessName}");
+    }
+
+    /**
+    * 导入${functionName}列表
+    */
+    @PreAuthorize("@ss.hasPermi('${permissionPrefix}:import')")
+    @PostMapping("/importData")
+    @ResponseBody
+    @Log(title = "${functionName}", businessType = BusinessType.IMPORT)
+    public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception
+    {
+        ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}.class);
+        List<${ClassName}> list = util.importExcel(file.getInputStream());
+        String message = ${className}Service.importData(list, updateSupport);
+        return AjaxResult.success(message);
+    }
+
+    @GetMapping("/importTemplate")
+    public AjaxResult importTemplate()
+    {
+        ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}.class);
+        return util.importTemplateExcel("用户数据");
     }
 
     /**

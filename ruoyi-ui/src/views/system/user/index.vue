@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-row :gutter="20">
       <!--部门数据-->
-      <el-col :span="4" :xs="24">
+      <!--<el-col :span="4" :xs="24">
         <div class="head-container">
           <el-input
             v-model="deptName"
@@ -24,7 +24,7 @@
             @node-click="handleNodeClick"
           />
         </div>
-      </el-col>
+      </el-col>-->
       <!--用户数据-->
       <el-col :span="20" :xs="24">
         <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
@@ -69,7 +69,7 @@
               v-model="dateRange"
               size="small"
               style="width: 240px"
-              value-format="yyyy-MM-dd"
+              value-format="yyyy-MM-dd hh:mm:ss"
               type="daterange"
               range-separator="-"
               start-placeholder="开始日期"

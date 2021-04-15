@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.yanlian.mapper.YanlianMapper">
+
+    <resultMap type="Yanlian" id="YanlianResult">
+        <result property="id"    column="id"    />
+        <result property="date"    column="date"    />
+        <!--<result property="time"    column="time"    />-->
+        <result property="part"    column="part"    />
+        <result property="yanxiyuan"    column="yanxiyuan"    />
+        <result property="commanderChief"    column="commander_chief"    />
+        <result property="participants"    column="participants"    />
+        <result property="record"    column="record"    />
+        <result property="situation"    column="situation"    />
+    </resultMap>
+
+    <sql id="selectYanlianVo">
+        select id, date    , part, yanxiyuan, commander_chief, participants, record, situation from yanlian
+    </sql>
+
+    <select id="selectYanlianList" parameterType="Yanlian" resultMap="YanlianResult">
+        <include refid="selectYanlianVo"/>
+        <where>
+            <if test="date != null "> and date = #{date}</if>
+             <!--<if test="time != null "> and time = #{time}</if>-->
+            <if test="part != null  and part != ''"> and part = #{part}</if>
+            <if test="yanxiyuan != null  and yanxiyuan != ''"> and yanxiyuan = #{yanxiyuan}</if>
+            <if test="commanderChief != null  and commanderChief != ''"> and commander_chief = #{commanderChief}</if>
+            <if test="participants != null  and participants != ''"> and participants = #{participants}</if>
+            <if test="record != null  and record != ''"> and record = #{record}</if>
+            <if test="situation != null  and situation != ''"> and situation = #{situation}</if>
+        </where>
+    </select>
+
+    <select id="selectYanlianById" parameterType="Long" resultMap="YanlianResult">
+        <include refid="selectYanlianVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertYanlian" parameterType="Yanlian" useGeneratedKeys="true" keyProperty="id">
+        insert into yanlian
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="date != null">date,</if>
+            <!--<if test="time != null">time,</if>-->
+            <if test="part != null">part,</if>
+            <if test="yanxiyuan != null">yanxiyuan,</if>
+            <if test="commanderChief != null">commander_chief,</if>
+            <if test="participants != null">participants,</if>
+            <if test="record != null">record,</if>
+            <if test="situation != null">situation,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="date != null">#{date},</if>
+            <!--<if test="time != null">#{time},</if>-->
+            <if test="part != null">#{part},</if>
+            <if test="yanxiyuan != null">#{yanxiyuan},</if>
+            <if test="commanderChief != null">#{commanderChief},</if>
+            <if test="participants != null">#{participants},</if>
+            <if test="record != null">#{record},</if>
+            <if test="situation != null">#{situation},</if>
+         </trim>
+    </insert>
+
+    <update id="updateYanlian" parameterType="Yanlian">
+        update yanlian
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="date != null">date = #{date},</if>
+            <!--<if test="time != null">time = #{time},</if>-->
+            <if test="part != null">part = #{part},</if>
+            <if test="yanxiyuan != null">yanxiyuan = #{yanxiyuan},</if>
+            <if test="commanderChief != null">commander_chief = #{commanderChief},</if>
+            <if test="participants != null">participants = #{participants},</if>
+            <if test="record != null">record = #{record},</if>
+            <if test="situation != null">situation = #{situation},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteYanlianById" parameterType="Long">
+        delete from yanlian where id = #{id}
+    </delete>
+
+    <delete id="deleteYanlianByIds" parameterType="String">
+        delete from yanlian where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

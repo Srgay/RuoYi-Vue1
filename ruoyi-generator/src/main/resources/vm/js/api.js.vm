@@ -51,3 +51,11 @@ export function export${BusinessName}(query) {
     params: query
   })
 }
+
+// 下载${functionName}导入模板
+export function import${BusinessName}() {
+  return request({
+    url: '/${moduleName}/${businessName}/importTemplate',
+    method: 'get'
+  })
+}

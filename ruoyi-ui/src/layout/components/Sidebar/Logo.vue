@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      title: '若依管理系统',
+      title: '戒毒所管理系统',
       logo: logoImg
     }
   }
@@ -77,7 +77,7 @@ export default {
 
   &.collapse {
     .sidebar-logo {
-      margin-right: 0px;
+      margin: 0px 15px 0px 0px;
     }
   }
 }

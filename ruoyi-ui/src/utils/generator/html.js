@@ -58,7 +58,8 @@ function buildFromBtns(conf, type) {
     str = `<el-form-item size="large">
           <el-button type="primary" @click="submitForm">提交</el-button>
           <el-button @click="resetForm">重置</el-button>
-        </el-form-item>`
+        </el-col>
+          <el-col :span="6">`
     if (someSpanIsNot24) {
       str = `<el-col :span="24">
           ${str}
@@ -88,7 +89,8 @@ const layouts = {
     const tagDom = tags[element.tag] ? tags[element.tag](element) : null
     let str = `<el-form-item ${labelWidth} label="${element.label}" prop="${element.vModel}" ${required}>
         ${tagDom}
-      </el-form-item>`
+      </el-form-item></el-col>
+          <el-col :span="6">`
     str = colWrapper(element, str)
     return str
   },

@@ -15,19 +15,19 @@ import ${packageName}.service.I${ClassName}Service;
 
 /**
  * ${functionName}Service业务层处理
- * 
+ *
  * @author ${author}
  * @date ${datetime}
  */
 @Service
-public class ${ClassName}ServiceImpl implements I${ClassName}Service 
+public class ${ClassName}ServiceImpl implements I${ClassName}Service
 {
     @Autowired
     private ${ClassName}Mapper ${className}Mapper;
 
     /**
      * 查询${functionName}
-     * 
+     *
      * @param ${pkColumn.javaField} ${functionName}ID
      * @return ${functionName}
      */
@@ -39,7 +39,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 
     /**
      * 查询${functionName}列表
-     * 
+     *
      * @param ${className} ${functionName}
      * @return ${functionName}
      */
@@ -51,7 +51,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 
     /**
      * 新增${functionName}
-     * 
+     *
      * @param ${className} ${functionName}
      * @return 结果
      */
@@ -68,7 +68,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 
     /**
      * 修改${functionName}
-     * 
+     *
      * @param ${className} ${functionName}
      * @return 结果
      */
@@ -85,7 +85,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 
     /**
      * 批量删除${functionName}
-     * 
+     *
      * @param ${pkColumn.javaField}s 需要删除的${functionName}ID
      * @return 结果
      */
@@ -97,7 +97,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 
     /**
      * 删除${functionName}信息
-     * 
+     *
      * @param ${pkColumn.javaField} ${functionName}ID
      * @return 结果
      */
@@ -105,5 +105,16 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
     public int delete${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField})
     {
         return ${className}Mapper.delete${ClassName}ById(${pkColumn.javaField});
+    }
+
+    /**
+     * 导入${functionName}
+     *
+     * @param
+     * @return
+     */
+    public String importData(List<${ClassName}> list, boolean updateSupport){
+        list.stream().forEach(d->${className}Mapper.insert${ClassName}(d));
+        return "succeed";
     }
 }

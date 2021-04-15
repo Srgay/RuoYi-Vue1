@@ -1,7 +1,9 @@
 <template>
   <div class="login">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-      <h3 class="title">若依后台管理系统</h3>
+     <!-- <img :src="logo" class="login-logo">-->
+      <h3 class="title">
+        <img :src="logo" class="login-logo"><h3>戒毒所后台管理系统</h3></h3>
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
@@ -48,7 +50,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2018-2020 ruoyi.vip All Rights Reserved.</span>
+     <!-- <span>Copyright © 2018-2020 ry.vip All Rights Reserved.</span>-->
     </div>
   </div>
 </template>
@@ -57,11 +59,13 @@
 import { getCodeImg } from "@/api/login";
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from '@/utils/jsencrypt'
+import logoImg from '@/assets/logo/logo.png'
 
 export default {
   name: "Login",
   data() {
     return {
+      logo: logoImg,
       codeUrl: "",
       cookiePassword: "",
       loginForm: {
@@ -202,5 +206,9 @@ export default {
 }
 .login-code-img {
   height: 38px;
+}
+.sidebar-logo {
+  margin: 0px auto 30px auto;
+  text-align: center;
 }
 </style>
