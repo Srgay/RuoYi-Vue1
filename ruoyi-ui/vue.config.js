@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || '戒毒所管理系统' // 标题
+const name = defaultSettings.title || '信息管理系统' // 标题
 
 const port = process.env.port || process.env.npm_config_port || 81 // 端口
 
@@ -34,7 +34,7 @@ module.exports = {
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
-        target: `http://localhost:8081`,
+        target: `http://121.196.144.82:8080`,
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''

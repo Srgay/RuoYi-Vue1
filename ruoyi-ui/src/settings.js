@@ -1,5 +1,5 @@
 module.exports = {
-  title: '戒毒所管理系统',
+  title: '信息管理系统',
 
   /**
    * 是否系统布局配置
